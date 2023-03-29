@@ -1,21 +1,26 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import "./Cart.scss";
+import { selectCartInfo } from "./cartSlice";
 
 const Cart = () => {
+  const { selectedItems, totalPrice, totalShippingCharge, tax, grandTotal } =
+    useSelector((state) => selectCartInfo(state));
+
   return (
     <div className="cart">
       <h5>Order Summary</h5>
 
       <div className="cart-info">
-        <p>Selected Items: 0</p>
-        <p>Total Price: $0</p>
-        <p>Total Shipping Charge: $0</p>
-        <p>Tax: $0</p>
-        <h6>Grand Total: $00</h6>
+        <p>Selected Items: {selectedItems}</p>
+        <p>Total Price: ${totalPrice}</p>
+        <p>Total Shipping Charge: ${totalShippingCharge}</p>
+        <p>Tax: ${tax}</p>
+        <h6>Grand Total: ${grandTotal}</h6>
       </div>
       <div className="btn-container">
-      <button className="clear-btn">Clear Cart</button>
-      <button className="review-btn">Review Order</button>
+        <button className="clear-btn">Clear Cart</button>
+        <button className="review-btn">Review Order</button>
       </div>
     </div>
   );

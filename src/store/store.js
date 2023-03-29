@@ -10,6 +10,3 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(productsApi.middleware),
 });
-
-// initiate the getProducts data fetching
-// store.dispatch(productsApi.endpoints.getProducts.initiate())
