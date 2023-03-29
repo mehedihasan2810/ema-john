@@ -1,5 +1,6 @@
 import React from 'react'
 import logo from '../../assets/images/Logo.svg'
+import './Navbar.scss';
 const Navbar = () => {
   return (
     <header>
@@ -7,7 +8,7 @@ const Navbar = () => {
             <a href="#">
                 <img src={logo} alt="" />
             </a>
-            <ul>
+            <ul role='list'>
                 <li>
                     <a href="#">
                         Order

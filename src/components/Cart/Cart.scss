@@ -1,0 +1,55 @@
+.cart {
+  background-color: rgba(255, 153, 0, 0.3);
+  position: sticky;
+  top: 0;
+  height: 30rem;
+
+  h5 {
+    color: #1c2b35;
+    font-weight: 400;
+    font-size: 25px;
+    text-align: center;
+    margin: 1rem 0;
+  }
+
+  .cart-info {
+    margin: 3rem 1.5rem;
+  }
+  .cart-info > * + * {
+    margin-top: 1rem;
+  }
+
+  p {
+    color: #2a414f;
+    font-size: 17px;
+  }
+  h6 {
+    color: #0e161a;
+    font-weight: 400;
+    font-size: 21px;
+  }
+
+  .btn-container {
+    margin: 0 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .clear-btn {
+    font: inherit;
+    color: #ffffff;
+    background: #ff3030;
+    border-radius: 4px;
+    padding: 1rem 2rem;
+    border: none;
+  }
+  .review-btn {
+    font: inherit;
+    color: #ffffff;
+    background: #ff9900;
+    border-radius: 4px;
+    padding: 1rem 2rem;
+    border: none;
+  }
+}
