@@ -5,22 +5,22 @@
 
 .products-container {
   display: grid;
-  // width: fit-content;
-  // grid-template-columns: repeat( auto-fit, minmax(300px, 1fr) );
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0.5rem;
-  place-self: center;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 0.8rem;
   margin: 1rem;
+  // width: fit-content;
+  // grid-template-columns: repeat(4, 1fr);
+  // place-self: center;
 }
 
-@media (max-width: 1440px) {
-  .products-container {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
+// @media (max-width: 1440px) {
+//   .products-container {
+//     grid-template-columns: repeat(3, 1fr);
+//   }
+// }
 
-@media (max-width: 1024px) {
-  .products-container {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
+// @media (max-width: 1024px) {
+//   .products-container {
+//     grid-template-columns: repeat(2, 1fr);
+//   }
+// }

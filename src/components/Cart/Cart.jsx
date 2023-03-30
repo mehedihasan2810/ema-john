@@ -2,6 +2,8 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./Cart.scss";
 import { clearCart, selectCartInfo } from "./cartSlice";
+import DeleteIcon from '@mui/icons-material/Delete';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -20,10 +22,13 @@ const Cart = () => {
         <h6>Grand Total: ${grandTotal}</h6>
       </div>
       <div className="btn-container">
-        <button onClick={() => dispatch(clearCart())} className="clear-btn">
-          Clear Cart
+        <button onClick={() => dispatch(clearCart())} className="clear-btn flex-center">
+          Clear Cart <DeleteIcon/>
         </button>
-        <button className="review-btn">Review Order</button>
+        <button className="review-btn flex-center">
+          Review Order
+          <ArrowForwardIcon/>
+          </button>
       </div>
     </div>
   );
