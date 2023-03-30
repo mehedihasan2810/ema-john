@@ -1,9 +1,10 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "./Cart.scss";
-import { selectCartInfo } from "./cartSlice";
+import { clearCart, selectCartInfo } from "./cartSlice";
 
 const Cart = () => {
+  const dispatch = useDispatch();
   const { selectedItems, totalPrice, totalShippingCharge, tax, grandTotal } =
     useSelector((state) => selectCartInfo(state));
 
@@ -19,7 +20,9 @@ const Cart = () => {
         <h6>Grand Total: ${grandTotal}</h6>
       </div>
       <div className="btn-container">
-        <button className="clear-btn">Clear Cart</button>
+        <button onClick={() => dispatch(clearCart())} className="clear-btn">
+          Clear Cart
+        </button>
         <button className="review-btn">Review Order</button>
       </div>
     </div>

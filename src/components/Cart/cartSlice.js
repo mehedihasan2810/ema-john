@@ -1,8 +1,13 @@
 import { createSelector, createSlice } from "@reduxjs/toolkit";
 import { selectProductById } from "../../api/api";
+import {
+  getProductsFromLocalStorage,
+  clearProductsFromLocalStorage,
+  setProductsToLocalStorage,
+} from "../../utilities/fakedb2";
 
 const initialState = {
-  cartItems: [],
+  cartItems: getProductsFromLocalStorage(),
 };
 
 const cartSlice = createSlice({
@@ -11,30 +16,29 @@ const cartSlice = createSlice({
   reducers: {
     addToCart: (state, action) => {
       state.cartItems.push(action.payload);
+      setProductsToLocalStorage(action.payload);
+    },
+
+    clearCart: (state) => {
+      state.cartItems.length = 0;
+      clearProductsFromLocalStorage();
     },
   },
 });
 
-export const { addToCart } = cartSlice.actions;
-
+export const { addToCart, clearCart } = cartSlice.actions;
 export default cartSlice.reducer;
 
-export const selectProductItem = (state) => {
+const selectProductItem = (state) => {
   return state;
 };
 
-const accumulator = {
-  selectedItems: 0,
-  totalPrice: 0,
-  totalShippingCharge: 0,
-  tax: 0,
-  grandTotal: 0,
-};
 export const selectCartInfo = createSelector(selectProductItem, (state) =>
   state.cart.cartItems.reduce(
     (acc, id) => {
       // totalSelectedItems
       acc.selectedItems += 1;
+
       //   get product by id
       const { price, shipping } = selectProductById(state, id);
 
