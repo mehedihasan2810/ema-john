@@ -1,0 +1,55 @@
+@use "../../scss/util/reuse";
+.order-review-container {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1400px;
+  margin: 2rem auto;
+}
+.order-review-items {
+  .order-review-item {
+    display: flex;
+    align-items: center;
+    width: 571px;
+    padding: 0.5rem;
+    border: 1px solid #2a414f50;
+    border-radius: 6px;
+    &:not(:first-child) {
+      margin-top: 10px;
+    }
+  }
+  img {
+    height: 91px;
+    width: 91px;
+    border-radius: 6px;
+    margin-right: 12px;
+  }
+  .info > * + * {
+    margin-top: 6px;
+  }
+  h6 {
+    font-weight: 400;
+    font-size: 21px;
+    color: #1c2b35;
+  }
+  p {
+    font-size: 15px;
+    color: #1c2b35;
+  }
+  span {
+    color: #ff9900;
+  }
+  button {
+    width: 50px;
+    height: 50px;
+    border: none;
+    background: #eb575759;
+    border-radius: 50%;
+    color: red;
+    cursor: pointer;
+    margin-left: auto;
+  }
+  .deleteIcon {
+    width: 30px;
+    height: 30px;
+  }
+}

@@ -2,10 +2,9 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./Cart.scss";
 import { clearCart, selectCartInfo } from "./cartSlice";
-import DeleteIcon from '@mui/icons-material/Delete';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import DeleteIcon from "@mui/icons-material/Delete";
 
-const Cart = () => {
+const Cart = ({ children }) => {
   const dispatch = useDispatch();
   const { selectedItems, totalPrice, totalShippingCharge, tax, grandTotal } =
     useSelector((state) => selectCartInfo(state));
@@ -22,13 +21,13 @@ const Cart = () => {
         <h6>Grand Total: ${grandTotal}</h6>
       </div>
       <div className="btn-container">
-        <button onClick={() => dispatch(clearCart())} className="clear-btn flex-center">
-          Clear Cart <DeleteIcon/>
+        <button
+          onClick={() => dispatch(clearCart())}
+          className="clear-btn flex-center"
+        >
+          Clear Cart <DeleteIcon />
         </button>
-        <button className="review-btn flex-center">
-          Review Order
-          <ArrowForwardIcon/>
-          </button>
+        {children}
       </div>
     </div>
   );

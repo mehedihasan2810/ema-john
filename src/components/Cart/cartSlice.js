@@ -4,6 +4,7 @@ import {
   getProductsFromLocalStorage,
   clearProductsFromLocalStorage,
   setProductsToLocalStorage,
+  deleteProduct,
 } from "../../utilities/fakedb2";
 
 const initialState = {
@@ -23,10 +24,14 @@ const cartSlice = createSlice({
       state.cartItems.length = 0;
       clearProductsFromLocalStorage();
     },
+    removeProduct: (state, { payload }) => {
+      state.cartItems.splice(state.cartItems.indexOf(payload), 1);
+      deleteProduct(payload);
+    },
   },
 });
 
-export const { addToCart, clearCart } = cartSlice.actions;
+export const { addToCart, clearCart, removeProduct } = cartSlice.actions;
 export default cartSlice.reducer;
 
 const selectProductItem = (state) => {
@@ -69,4 +74,15 @@ export const selectCartInfo = createSelector(selectProductItem, (state) =>
       grandTotal: 0,
     }
   )
+);
+
+// select cart items for order review
+export const selectCartItems = createSelector(
+  (state) => state,
+  (state) => {
+    const items = state.cart.cartItems.map((id) => {
+      return selectProductById(state, id);
+    });
+    return items;
+  }
 );

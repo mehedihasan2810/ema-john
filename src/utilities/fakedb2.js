@@ -26,8 +26,19 @@ function clearProductsFromLocalStorage() {
   localStorage.removeItem("cart");
 }
 
+function deleteProduct(productId) {
+  const cart = localStorage.getItem("cart");
+  const items = JSON.parse(cart).filter((id) => {
+    if(id !== productId) {
+      return id;
+    }
+  })
+  localStorage.setItem('cart', JSON.stringify(items))
+}
+
 export {
   getProductsFromLocalStorage,
   setProductsToLocalStorage,
   clearProductsFromLocalStorage,
+  deleteProduct,
 };
