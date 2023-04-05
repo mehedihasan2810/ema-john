@@ -1,25 +1,26 @@
 import React from "react";
 import logo from "../../assets/images/Logo.svg";
 import "./Navbar.scss";
+import { Link } from "react-router-dom";
 const Navbar = () => {
   return (
     <header>
       <nav>
-        <a href="#">
+        <Link to="/">
           <img src={logo} alt="" />
-        </a>
+        </Link>
         <ul role="list">
           <li>
-            <a href="#">Order</a>
+            <Link to="/order">Order</Link>
           </li>
           <li>
-            <a href="#">Order Review</a>
+            <Link to="/order-review">Order Review</Link>
           </li>
           <li>
-            <a href="#">Manage Inventory</a>
+            <Link to="/inventory">Manage Inventory</Link>
           </li>
           <li>
-            <a href="#">Login</a>
+            <Link to="/login">Login</Link>
           </li>
         </ul>
       </nav>
