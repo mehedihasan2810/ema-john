@@ -1,42 +1,45 @@
-import { useEffect, useRef, useState } from "react";
-import "./Login.scss";
+import React, { useState } from "react";
+import "./SignUp.scss";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import GoogleButton from "react-google-button";
-import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase/firebase.config";
-import googleLogin from "../../googleLogin/googleLogin";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import googleLogin from "../../googleLogin/googleLogin";
 
-const Login = () => {
+const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [isShowPassword, setIsShowPassword] = useState(false);
+  const [confirmPassword, setConfirmPassword] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
 
-  const handleLogin = (event) => {
+  const handleSignUp = (event) => {
     event.preventDefault();
 
-    signInWithEmailAndPassword(auth, email, password)
+    if (password !== confirmPassword) {
+      // *show toast
+      toast.error("Password doesn't match!", {
+        position: toast.POSITION.TOP_CENTER,
+      });
+      return;
+    }
+
+    createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        const user = userCredential.user;
+        const loggedUser = userCredential.user;
         // *show toast
-        toast.success("Succesfully Logged In", {
+        toast.success("Succesfully signed up", {
           position: toast.POSITION.TOP_CENTER,
         });
 
         // * reset state
         setEmail("");
         setPassword("");
+        setConfirmPassword("");
 
         // *redirect user
-        /*
-         *Redirect them to the /login page, but save the current
-         *location they were trying to go to when they were redirected.
-         * this allows use to send them along to that page after they login
-         * which is a nicer user experience than dropping them off on the home page
-         * https://github.com/mehedihasan2810/react-router/blob/main/examples/auth/src/App.tsx
-         */
         const from = location.state?.from?.pathname || "/";
         navigate(from, { replace: true });
       })
@@ -49,6 +52,7 @@ const Login = () => {
         // * reset state
         setEmail("");
         setPassword("");
+        setConfirmPassword("");
       });
   };
 
@@ -66,23 +70,19 @@ const Login = () => {
         navigate(from, { replace: true });
       })
       .catch((error) => {
-        // *show toast
+        // *show success toast
         toast.error(error.message, {
           position: toast.POSITION.TOP_CENTER,
         });
       });
   };
 
-  const handleShowPassword = (e) => {
-    setIsShowPassword(e.target.checked);
-  };
-
   return (
     <div className="form-center">
       <div className="form-container">
         <div className="form-bg"></div>
-        <h2 className="form-title">Login</h2>
-        <form onSubmit={handleLogin}>
+        <h2 className="form-title">Sign Up</h2>
+        <form onSubmit={handleSignUp}>
           <div className="form-body">
             <div className="form-control">
               <label htmlFor="email">Email</label>
@@ -99,7 +99,7 @@ const Login = () => {
             <div className="form-control">
               <label htmlFor="password">password</label>
               <input
-                type={isShowPassword ? "text" : "password"}
+                type="password"
                 name="password"
                 id="password"
                 onChange={(e) => {
@@ -107,28 +107,26 @@ const Login = () => {
                 }}
                 value={password}
               />
-              <div className="togglePassword">
-                <input
-                  onChange={handleShowPassword}
-                  type="checkbox"
-                  name="togglePassword"
-                  id="togglePassword"
-                />
-                <label
-                  className="togglePassword-label"
-                  htmlFor="togglePassword"
-                >
-                  {isShowPassword ? "Hide Password" : "Show Password"}
-                </label>
-              </div>
+            </div>
+            <div className="form-control">
+              <label htmlFor="confirm-password">Confirm Password</label>
+              <input
+                type="password"
+                name="confirmPassword"
+                id="confirm-password"
+                onChange={(e) => {
+                  setConfirmPassword(e.target.value);
+                }}
+                value={confirmPassword}
+              />
             </div>
             <button type="submit">Login</button>
           </div>
         </form>
         <div className="create-new-account">
-          <span>New to Ema-john? </span>{" "}
-          <Link to="/signup" className="create-new-account-link">
-            Create New Account
+          <span>Already have an account? </span>{" "}
+          <Link to="/login" className="create-new-account-link">
+            Login
           </Link>
         </div>
         <div className="or-container">
@@ -142,4 +140,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default SignUp;

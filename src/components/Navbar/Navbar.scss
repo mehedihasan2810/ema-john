@@ -1,6 +1,6 @@
 header {
   background-color: #1c2b35;
-  padding: 0.7rem 0;
+  padding: 1rem 0;
 
   nav {
     max-width: 1400px;
@@ -22,5 +22,12 @@ header {
     &:hover {
       text-decoration: underline;
     }
+  }
+  .logout-btn{
+    color: #ffffff;
+    font: inherit;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
   }
 }

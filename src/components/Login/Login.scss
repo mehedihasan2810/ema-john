@@ -1,0 +1,129 @@
+.form-center {
+  width: 100%;
+  height: calc(100vh - 80px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .form-container {
+    min-width: 480px;
+    background: #ffffff;
+    border: 1px solid #95a0a7;
+    border-radius: 8px;
+    padding: 2.6rem;
+    position: relative;
+  }
+
+  .form-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    background: #ffe0b3;
+    border-radius: 8px;
+    transform: translate(-0.7rem, 0.7rem);
+  }
+
+  .form-title {
+    font-size: 2.2rem;
+    font-weight: 400;
+    color: #2a414f;
+    text-align: center;
+    margin-bottom: 1.8rem;
+  }
+
+  .form-body {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+
+  label {
+    color: #2a414f;
+    font-size: 1.2rem;
+    display: block;
+    margin-bottom: 0.6rem;
+  }
+
+  input {
+    width: 100%;
+    font-size: 1.2rem;
+    border: 1px solid #95a0a7;
+    border-radius: 5px;
+    padding: 0.9rem 0.9rem;
+  }
+
+  button[type="submit"] {
+    width: 100%;
+    padding: 1rem 0;
+    border: none;
+    color: #0e161a;
+    font-weight: 400;
+    font-size: 1.3rem;
+    background: rgba(255, 153, 0, 0.3);
+    border-radius: 5px;
+    margin-top: 0.5rem;
+    transition: all 0.1s linear;
+  }
+
+  button[type="submit"]:hover {
+    transform: scale(1.01);
+    background: rgba(255, 153, 0, 0.4);
+  }
+
+  .create-new-account {
+    font-size: 1rem;
+    color: #2a414f;
+    text-align: center;
+    margin-top: 0.8rem;
+  }
+
+  .create-new-account-link {
+    color: #ff9900;
+    margin-left: 4px;
+    text-decoration: none;
+  }
+
+  .create-new-account-link:hover {
+    text-decoration: underline;
+  }
+
+  .or-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    margin: 1.3rem 0;
+    color: #95a0a7;
+    font-size: 1.1rem;
+  }
+  .line {
+    display: block;
+    width: 145px;
+    border-top: 1px solid #95a0a7;
+  }
+
+  .google-button {
+    width: 100% !important;
+  }
+
+  .togglePassword{
+    display: flex;
+    align-items: start;
+    margin-top: 0.5rem;
+  }
+  input[type="checkbox"]{
+    width: fit-content;
+    margin-right: 0.6rem;
+    width: 1rem;
+    height: 1rem;
+    margin-top: 2px;
+  }
+
+  .togglePassword-label{
+    font-size: 1rem;
+    display: block;
+  }
+}
